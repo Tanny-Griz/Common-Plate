@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import HomeIcon from './home/HomeIcon'
 
 const navigationLinks = [
   { href: '/explore', label: 'Explore' },
@@ -13,6 +14,7 @@ const navigationLinks = [
 
 export default function Header() {
   const pathname = usePathname()
+  const isHome = pathname === '/'
 
   function renderNavigationLink(link: (typeof navigationLinks)[number]) {
     const isActive =
@@ -27,7 +29,7 @@ export default function Header() {
           href={link.href}
           aria-label={link.label}
           aria-current={isActive ? 'page' : undefined}
-          className={`flex size-11 shrink-0 items-center justify-center justify-self-center rounded-full bg-support text-foreground transition-colors hover:bg-support/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${
+          className={`flex size-11 shrink-0 items-center justify-center justify-self-center rounded-full bg-support text-foreground transition-colors hover:bg-support/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${isHome ? 'lg:size-14' : ''} ${
             isActive ? 'ring-2 ring-primary ring-offset-2 ring-offset-base' : ''
           }`}
         >
@@ -68,10 +70,10 @@ export default function Header() {
   return (
     <>
       <header className="border-b border-foreground/15 bg-base text-foreground">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <div className={`mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6 ${isHome ? 'md:min-h-24 md:px-[4%] md:py-4' : 'max-w-7xl lg:px-8'}`}>
           <Link
-            href="/explore"
-            aria-label="Common Plate — Explore food"
+            href="/"
+            aria-label="Common Plate — Home"
             className="flex min-h-11 min-w-0 items-center gap-2 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             <Image
@@ -80,13 +82,37 @@ export default function Header() {
               width={40}
               height={40}
               priority
-              className="shrink-0"
+              className={isHome ? 'shrink-0 md:size-8 lg:size-10' : 'shrink-0 md:hidden'}
             />
-            <span className="text-base font-semibold sm:text-lg">Common Plate</span>
+            <span className={isHome ? 'font-heading text-lg font-semibold text-foreground md:ml-3 md:text-[22px] lg:text-[34px]' : 'text-lg font-semibold md:hidden'}>Common Plate</span>
+            {!isHome && (
+            <Image
+              src="/images/logos/Logo with headline.png"
+              alt=""
+              width={2800}
+              height={840}
+              sizes="(min-width: 1024px) 320px, 288px"
+              priority
+              className="hidden h-auto w-72 md:block lg:w-80"
+            />
+            )}
           </Link>
 
-          <nav aria-label="Main navigation" className="hidden items-center gap-2 md:flex">
-            {navigationLinks.map(renderNavigationLink)}
+          <nav aria-label="Main navigation" className={`hidden items-center md:flex ${isHome ? 'gap-2 lg:gap-4' : 'gap-2'}`}>
+            {isHome ? (
+              <>
+                <Link href="/" aria-current="page" className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent/20 px-3 py-3 text-sm font-medium text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:gap-3 lg:px-4 lg:text-[16px]/6">
+                  <HomeIcon name="grid" />My donations
+                </Link>
+                <Link href="/#community" className="inline-flex min-h-12 items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium hover:bg-support/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:gap-3 lg:px-4 lg:text-[16px]/6">
+                  <HomeIcon name="users" />Organizations
+                </Link>
+                <Link href="/#impact" className="inline-flex min-h-12 items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium hover:bg-support/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:gap-3 lg:px-4 lg:text-[16px]/6">
+                  <HomeIcon name="leaf" />My impact
+                </Link>
+                {renderNavigationLink(navigationLinks[3])}
+              </>
+            ) : navigationLinks.map(renderNavigationLink)}
           </nav>
 
           <nav aria-label="Notifications" className="shrink-0 md:hidden">
