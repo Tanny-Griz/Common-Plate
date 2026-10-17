@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { FoodListing } from '@/types'
 
 const availabilityFormatter = new Intl.DateTimeFormat('en-US', {
@@ -84,6 +85,12 @@ export default function FoodCard({
             {availabilityFormatter.format(new Date(listing.availableUntil))}
           </time>
         </p>
+        <Link
+          href={`/listing/${encodeURIComponent(listing.id)}`}
+          className="self-start rounded-md text-sm font-medium text-gray-900 underline underline-offset-4 hover:text-gray-600 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-900"
+        >
+          View Details<span className="sr-only"> for {listing.title}</span>
+        </Link>
       </div>
     </article>
   )
