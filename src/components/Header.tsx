@@ -20,6 +20,35 @@ export default function Header() {
       pathname.startsWith(`${link.href}/`) ||
       (link.href === '/explore' && pathname.startsWith('/listing/'))
 
+    if (link.href === '/profile') {
+      return (
+        <Link
+          key={link.href}
+          href={link.href}
+          aria-label={link.label}
+          aria-current={isActive ? 'page' : undefined}
+          className={`flex size-11 shrink-0 items-center justify-center justify-self-center rounded-full bg-support text-foreground transition-colors hover:bg-support/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${
+            isActive ? 'ring-2 ring-primary ring-offset-2 ring-offset-base' : ''
+          }`}
+        >
+          <svg
+            aria-hidden="true"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
+          </svg>
+        </Link>
+      )
+    }
+
     return (
       <Link
         key={link.href}

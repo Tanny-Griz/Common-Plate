@@ -8,7 +8,7 @@ export default function ExplorePage() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <h1 className="mb-8 text-2xl font-semibold text-gray-900 sm:text-3xl">
+      <h1 className="mb-8 text-2xl font-semibold text-foreground sm:text-3xl">
         Available Food Near You
       </h1>
 
@@ -19,7 +19,7 @@ export default function ExplorePage() {
           ))}
         </div>
       ) : (
-        <p className="rounded-lg border border-gray-200 bg-gray-50 p-6 text-gray-600">
+        <p className="rounded-lg border border-foreground/15 bg-support/10 p-6 text-foreground/80">
           No food listings are available right now. Please check back soon.
         </p>
       )}

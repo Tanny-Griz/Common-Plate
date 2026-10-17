@@ -6,3 +6,9 @@
   --color-base: #F4EDE1; /* Oat Cream */
   --color-foreground: #1D2A37; /* Deep Slate */
 }
+
+@theme inline {
+  /* DM Sans has not been supplied; retain the system sans-serif body stack. */
+  --font-primary: var(--font-sans);
+  --font-heading: var(--font-fraunces);
+}
