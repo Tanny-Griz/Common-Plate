@@ -15,12 +15,12 @@ const navigationLinks = [
 const workspaceLinks = [
   { href: '/', label: 'My donations', icon: 'grid' },
   { href: '/organizations', label: 'Organizations', icon: 'users' },
-  { href: '/#impact', label: 'My impact', icon: 'leaf' },
+  { href: '/impact', label: 'My impact', icon: 'leaf' },
 ] as const
 
 export default function Header() {
   const pathname = usePathname()
-  const isWorkspace = pathname === '/' || pathname === '/organizations'
+  const isWorkspace = pathname === '/' || pathname === '/organizations' || pathname === '/impact'
 
   function renderNavigationLink(link: (typeof navigationLinks)[number]) {
     const isActive =
@@ -136,11 +136,25 @@ export default function Header() {
         aria-label="Mobile navigation"
         className="fixed inset-x-0 bottom-0 z-50 border-t border-foreground/15 bg-base px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] text-foreground md:hidden"
       >
-        <div className="mx-auto grid max-w-lg grid-cols-3 gap-2">
-          {(isWorkspace
-            ? [workspaceLinks[0], workspaceLinks[1], navigationLinks[3]]
-            : navigationLinks.filter((link) => link.href !== '/notifications')
-          ).map(renderNavigationLink)}
+        <div className={`mx-auto grid max-w-lg gap-2 ${isWorkspace ? 'grid-cols-4' : 'grid-cols-3'}`}>
+          {isWorkspace ? (
+            <>
+              {workspaceLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                  className={`flex min-h-11 min-w-0 flex-col items-center justify-center gap-1 rounded-lg px-0 py-2 text-[10px] font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:text-xs ${
+                    pathname === link.href ? 'bg-accent/20 text-primary' : 'hover:bg-support/20'
+                  }`}
+                >
+                  <HomeIcon name={link.icon} className="size-4" />
+                  {link.label}
+                </Link>
+              ))}
+              {renderNavigationLink(navigationLinks[3])}
+            </>
+          ) : navigationLinks.filter((link) => link.href !== '/notifications').map(renderNavigationLink)}
         </div>
       </nav>
     </>
