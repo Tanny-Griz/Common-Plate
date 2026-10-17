@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Header from '@/components/Header'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -13,7 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        <div className="pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
