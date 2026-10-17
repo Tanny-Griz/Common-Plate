@@ -1,0 +1,8 @@
+/* Common Plate palette supplied by the designer. */
+@theme {
+  --color-primary: #8F331C; /* Terracotta */
+  --color-accent: #E9A93A; /* Harvest Gold */
+  --color-support: #78B1AD; /* Sea Glass */
+  --color-base: #F4EDE1; /* Oat Cream */
+  --color-foreground: #1D2A37; /* Deep Slate */
+}
