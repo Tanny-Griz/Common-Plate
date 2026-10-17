@@ -5,30 +5,30 @@ export default function DonationHero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative isolate grid min-h-[540px] place-items-center overflow-hidden bg-primary px-4 py-16 text-[color:var(--color-base)] sm:px-6 md:min-h-[calc(100svh-6rem)] md:py-20 lg:px-8"
+      className="relative isolate grid min-h-[520px] items-center justify-items-start overflow-hidden bg-primary px-5 py-16 text-[color:var(--color-base)] sm:px-6 md:min-h-[clamp(520px,40vw,760px)] md:px-[4%] md:py-20"
     >
       <Image
-        src="/images/food/leftover_fruit_croissants_pastries.png"
-        alt="Surplus fruit, croissants, and pastries ready to share in a catering kitchen"
+        src="/images/food/hero-meal-prep.jpg"
+        alt="Prepared meal trays with rice, vegetables, and meat ready to share"
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[center_62%]"
+        className="object-cover object-center"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(160deg,color-mix(in_srgb,var(--color-primary)_90%,transparent),color-mix(in_srgb,var(--color-primary)_82%,transparent))] md:bg-[linear-gradient(100deg,color-mix(in_srgb,var(--color-primary)_48%,transparent)_0%,color-mix(in_srgb,var(--color-primary)_86%,transparent)_30%,color-mix(in_srgb,var(--color-primary)_86%,transparent)_70%,color-mix(in_srgb,var(--color-primary)_48%,transparent)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--color-primary)_94%,transparent)_0%,color-mix(in_srgb,var(--color-primary)_80%,transparent)_45%,color-mix(in_srgb,var(--color-primary)_20%,transparent)_100%)] md:bg-[linear-gradient(90deg,color-mix(in_srgb,var(--color-primary)_94%,transparent)_0%,color-mix(in_srgb,var(--color-primary)_76%,transparent)_35%,color-mix(in_srgb,var(--color-primary)_30%,transparent)_65%,transparent_100%)]"
       />
 
-      <div className="relative z-10 w-full max-w-[640px] text-center">
+      <div className="relative z-10 w-full max-w-[1100px] text-left">
         <p className="mb-5 text-xs font-bold uppercase md:mb-6 md:text-sm">From caterer to community</p>
-        <h1 id="hero-title" className="text-[52px] leading-[1.08] font-medium sm:text-6xl md:text-[clamp(60px,5.2vw,96px)]">
-          Surplus to<br />supper
+        <h1 id="hero-title" className="text-[48px] leading-[1.08] font-medium sm:text-[52px] md:text-[clamp(52px,4.3vw,88px)]">
+          Surplus to supper
         </h1>
-        <p className="mx-auto mt-6 mb-8 max-w-[560px] text-[16px]/7 md:mt-7 md:mb-8 md:text-lg/8 lg:text-xl/8">
+        <p className="mt-6 mb-8 max-w-[420px] text-[16px]/7 md:mt-7 md:mb-8 lg:text-lg/7">
           Connect your extra food with a community that needs it.
         </p>
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+        <div className="flex flex-wrap justify-start gap-3 md:gap-4">
           <button
             type="button"
             disabled
